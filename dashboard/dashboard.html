@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOB APPLICATION TRACKER DASHBOARD</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/92d2e6922e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header id="top-header">
+        <div id="header-left">
+            <h1>Job Application Tracker</h1>
+            <!-- <p>Welcome, John!</p> -->
+            <p></p>
+        </div>
+        <div id="header-right">
+            <button id="btn-primary"> <i class="fa-solid fa-plus"></i> Add Application</button>
+            <button id="btn-outline"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</button>
+        </div>
+    </header>
+
+    <main id="dashboard">       
+        <section id="app-section">
+            <div class="app-block block1"> <span>Total Applications <i class="fa-solid fa-basket-shopping"></i> </span> <h2>0</h2> </div>
+            <div class="app-block block2"> <span>Offer <i class="fa-regular fa-clock"></i> </span> <h2>0</h2> </div> 
+            <div class="app-block block3"> <span>Interviews <i class="fa-regular fa-circle-check"></i> </span> <h2>0</h2> </div>
+            <div class="app-block block4"> <span>Rejected <i class="fa-regular fa-circle-xmark"></i> </span> <h2>0</h2> </div> 
+        </section>
+        <div id="applicationsContainer" class="applications-container">
+            <section id="no-app-section" class="empty-section hide-empty-section">
+                <div id="empty-icon">📄</div> 
+                <h3>No applications yet</h3>
+                <p>Start tracking your job applications by clicking the <strong>"Add Application"</strong> button above.</p>
+            </section>
+            <div id="applications-list" class="list-section hide-list-section">
+                <div class="app-header">
+                    <h2 class="recentAppHeading">Recent Applications</h2>
+                    <p></p>
+                </div>
+                <div id="theMainSection"></div>
+
+            </div>
+        </div>
+
+        <div id="applicationModal" class="modal-overlay hidden">
+            <div id="modal">
+                <div id="modal-header">
+                    <h2>Add New Application</h2>
+                    <button id="closeModal">&times;</button>
+                </div>
+
+                <form id="applicationForm">
+                    <div id="form-grid">
+                        <div>
+                        <label for="companyName">Company Name *</label>
+                        <input type="text" id="companyName" required/>
+                        </div>
+
+                        <div>
+                        <label for="jobTitle">Job Title *</label>
+                        <input type="text" id="jobTitle" required/>
+                        </div>
+
+                        <div>
+                        <label for="jobType">Job Type</label>
+                        <select id="jobType">
+                            <option value="internship">Internship</option>
+                            <option value="full-time">Full-time</option>
+                            <option value="contract">Contract</option>
+                        </select>
+                        </div>
+
+                        <div>
+                        <label for="status">Status</label>
+                        <select id="status">
+                            <option value="applied">Applied</option>
+                            <option value="interview">Interview</option>
+                            <option value="rejected">Rejected</option>
+                            <option value="offer">Offer</option>
+                        </select>
+                        </div>
+
+                        <div>
+                        <label for="applicationDate">Application Date</label>
+                        <input type="date" id="applicationDate"/>
+                        </div>
+
+                        <div>
+                        <label for="resumeUsed">Resume Used</label>
+                        <input type="text" id="resumeUsed" placeholder="e.g., Resume_v2.pdf"/>
+                        <!-- File <input type="file"> -->
+                        </div>
+                    </div>
+
+                    <div id="full-width">
+                        <label for="notes">Notes</label>
+                        <textarea rows="4" id="notes" placeholder="Any additional notes about this application..."></textarea>
+                    </div>
+
+                    <div id="modal-footer">
+                        <button type="button" id="cancel-btn">Cancel</button>
+                        <button type="submit" class="add-btn">Add Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="dashboard.js"></script>
+</body>
+</html>

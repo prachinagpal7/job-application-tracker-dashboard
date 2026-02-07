@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOB APPLICATION TRACKER DASHBOARD</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div id="container">
+        <section id="small-container">
+            <header id="auth-header">
+                <h1 id="heading">Get Started</h1>
+                <p>Create your job tracker account</p>
+            </header>
+
+            <form id="auth-form">
+                <div id="form-row">
+                    <div class="form-group">
+                        <label for="lastName">First Name</label>
+                        <input type="text" id="firstName" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required />
+                </div>           
+
+                <button type="submit" id="primary-btn">Create Account</button>
+            </form>
+
+            <footer id="auth-footer">
+                <p>Already have an account?<span> Sign in</span></p>
+            </footer>
+        </section>          
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
