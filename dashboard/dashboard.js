@@ -1,16 +1,23 @@
-const dataOfUser = localStorage.getItem('userStoredData')
-if (!dataOfUser) {
+const message = localStorage.getItem("toastMessage");
+if(message){
+    showToast(message);
+    localStorage.removeItem("toastMessage");
+}
+
+const users = JSON.parse(localStorage.getItem('users')) || [];
+let currentEmail = localStorage.getItem('currentUser');
+if (!currentEmail) {
     window.location.href = "/auth/auth.html";
 }
 
-const user = JSON.parse(dataOfUser);
+let user = users.find(user => user.myEmail === currentEmail);
 
 const welcomeText = document.querySelector("#header-left p");
 welcomeText.textContent = `Welcome, ${user.myName}!`;
 
 const signOutBtn = document.getElementById("btn-outline");
 signOutBtn.addEventListener("click", function(){
-    localStorage.removeItem("userStoredData");
+    localStorage.removeItem("currentUser");
     window.location.href = "/auth/auth.html";
 });
 
@@ -39,7 +46,9 @@ const addApp = document.querySelector('#applicationForm');
 function renderApplications(){
     const appList = document.querySelector('#applications-list');
     const mainSection = document.querySelector('#theMainSection');
-    const user = JSON.parse(localStorage.getItem('userStoredData'));
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    let currentEmail = localStorage.getItem('currentUser');
+    let user = users.find(user => user.myEmail === currentEmail);
     const noAppSection = document.querySelector('#no-app-section');
 
     mainSection.innerHTML = "";
@@ -88,7 +97,9 @@ function renderApplications(){
 }
 
 function updateStats(){
-    const user = JSON.parse(localStorage.getItem('userStoredData'));
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    let currentEmail = localStorage.getItem('currentUser');
+    let user = users.find(user => user.myEmail === currentEmail);
     const firstBlock = document.querySelector('.block1 h2');
     const secondBlock = document.querySelector('.block2 h2');
     const thirdBlock = document.querySelector('.block3 h2');
@@ -114,21 +125,28 @@ function updateStats(){
     secondBlock.textContent = pCount;
     thirdBlock.textContent = iCount;
     fourthBlock.textContent = rCount;
-    
 }
 
 function deleteButton(index){
-    const user = JSON.parse(localStorage.getItem('userStoredData'));
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    let currentEmail = localStorage.getItem('currentUser');
+    let userIndex = users.findIndex(u => u.myEmail === currentEmail);
+    let user = users[userIndex];
     user.myApplications.splice(index, 1);
-    localStorage.setItem('userStoredData', JSON.stringify(user));
+    users[userIndex] = user;
+    localStorage.setItem("users", JSON.stringify(users));
     renderApplications();
+    updateStats();
+    showToast("Job application deleted successfully!");
 }
 
 let editIndex = null;
 
 function editButton(index){
     const modalHeader = document.querySelector('#modal-header h2');
-    const user = JSON.parse(localStorage.getItem('userStoredData'));
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    let currentEmail = localStorage.getItem('currentUser');
+    let user = users.find(user => user.myEmail === currentEmail);
     const app = user.myApplications[index];
 
     editIndex = index;
@@ -148,7 +166,9 @@ function editButton(index){
 addApp.addEventListener("submit", function(e){
     e.preventDefault();
 
-    const user = JSON.parse(localStorage.getItem('userStoredData'));
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    let currentEmail = localStorage.getItem('currentUser');
+    let user = users.find(user => user.myEmail === currentEmail);
 
     let inputCompanyName = document.querySelector('#companyName');
     let inputJobTitle = document.querySelector('#jobTitle');
@@ -158,8 +178,8 @@ addApp.addEventListener("submit", function(e){
     let inputResumeUsed = document.querySelector('#resumeUsed');
     let inputNotes = document.querySelector('#notes');
 
-    if (!inputCompanyName || !inputJobTitle) {
-        alert("Company name and job title are required");
+    if (!inputCompanyName.value.trim() || !inputJobTitle.value.trim()) {
+        showToast("Company name and job title are required.");
         return;
     }
 
@@ -178,15 +198,34 @@ addApp.addEventListener("submit", function(e){
         user.myApplications[editIndex] = applicationData;
         editIndex = null;
         document.querySelector('#modal-header h2').textContent = "Add New Application";
+        showToast("Job application updated successfully!");
     } else {
         user.myApplications.push(applicationData);
+        showToast("Job application added successfully!");
     }
 
-    localStorage.setItem("userStoredData", JSON.stringify(user));
+    let userIndex = users.findIndex(u => u.myEmail === currentEmail);
+    users[userIndex] = user;
+    localStorage.setItem("users", JSON.stringify(users));
 
     addApp.reset();
     modall.classList.add("hidden");
     renderApplications();
 });
+
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    const toastMsg = document.getElementById("toast-message");
+
+    toastMsg.textContent = message;
+
+    toast.classList.remove("hidden");
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+        toast.classList.add("hidden");
+    }, 2500);
+}
 
 renderApplications();

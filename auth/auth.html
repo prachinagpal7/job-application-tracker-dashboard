@@ -15,15 +15,17 @@
             </header>
 
             <form id="auth-form">
-                <div id="form-row">
-                    <div class="form-group">
-                        <label for="lastName">First Name</label>
-                        <input type="text" id="firstName" required />
-                    </div>
+                <div id="name-fields">
+                    <div id="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" required />
+                        </div>
 
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" required />
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" required />
+                        </div>
                     </div>
                 </div>
 
@@ -44,7 +46,9 @@
             </footer>
         </section>          
     </div>
-
+    <div id="toast" class="toast hidden">
+        <span id="toast-message"></span>
+    </div>
     <script src="auth.js"></script>
 </body>
 </html>
