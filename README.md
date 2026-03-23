@@ -6,6 +6,28 @@ This isn’t just about tracking applications — it’s about managing your ent
 
 ---
 
+## 📸 Project Screenshots
+
+### Signup Page
+![Signup](images/signup.png)
+
+### Login Page
+![Login](images/login.png)
+
+### Dashboard Overview
+![Dashboard](images/dashboard1.png)
+
+### Add Application
+![Add Application](images/addApplication.png)
+
+### Dashboard Overview
+![Dashboard](images/dashboard2.png)
+
+### Modify Application
+![Modify Application](images/modifyApplication.png)
+
+---
+
 ## ✨ Overview
 
 Most trackers feel cluttered and hard to maintain.
