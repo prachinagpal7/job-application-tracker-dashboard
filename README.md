@@ -8,23 +8,23 @@ This isn’t just about tracking applications — it’s about managing your ent
 
 ## 📸 Project Screenshots
 
-### Signup Page
-![Signup](images/signup.png)
+### Signup and Login Page
+<p align="center">
+  <img src="images/signup.png" width="380">
+  <img src="images/login.png" width="380">
+</p>
 
-### Login Page
-![Login](images/login.png)
+### Dashboard and Add Application
+<p align="center">
+  <img src="images/dashboard1.png" width="380">
+  <img src="images/addApplication.png" width="380">
+</p>
 
-### Dashboard Overview
-![Dashboard](images/dashboard1.png)
-
-### Add Application
-![Add Application](images/addApplication.png)
-
-### Dashboard Overview
-![Dashboard](images/dashboard2.png)
-
-### Modify Application
-![Modify Application](images/modifyApplication.png)
+### Dashboard Overview and Modify Application
+<p align="center">
+  <img src="images/dashboard2.png" width="380">
+  <img src="images/modifyApplication.png" width="380">
+</p>
 
 ---
 
